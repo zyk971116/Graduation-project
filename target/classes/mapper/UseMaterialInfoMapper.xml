@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.UseMaterialInfoMapper">
+
+
+    <select id="getOneInfo" resultType="java.lang.Float">
+        SELECT IFNULL(SUM(total), 0.0) FROM use_material_info where category=1
+    </select>
+    <select id="getTwoInfo" resultType="java.lang.Float">
+        SELECT IFNULL(SUM(total), 0.0) FROM use_material_info where category=2
+    </select>
+    <select id="getThreeInfo" resultType="java.lang.Float">
+        SELECT IFNULL(SUM(total), 0.0) FROM use_material_info where category=3
+    </select>
+    <select id="selectGroup" resultType="com.jf.school.bean.vo.UseMaterialVO">
+        SELECT FROM_UNIXTIME(created, '%Y年%m月') AS date  FROM use_material_info  GROUP BY date ORDER BY date DESC
+    </select>
+    <select id="getNumbersByMonth" resultType="java.lang.Integer">
+        select DISTINCT material_number from use_material_info WHERE created &gt;= #{first} AND created &lt;= #{last}
+    </select>
+    <select id="selectByNumber" resultType="java.lang.Integer">
+      select sum(total) from use_material_info WHERE created &gt;= #{first} AND created &lt;= #{last} and material_number=#{number}
+    </select>
+    <select id="selectMaterial" resultType="com.jf.school.bean.table.UseMaterialInfo">
+        select * from use_material_info WHERE material_number=#{integer} limit 1
+    </select>
+    <select id="selectGroupUse" resultType="java.lang.String">
+    SELECT FROM_UNIXTIME(created, '%Y年%m月') AS date  FROM use_material_info  GROUP BY date ORDER BY date DESC limit 1
+    </select>
+    <select id="getTotalByMonth" resultType="java.lang.Float">
+        SELECT IFNULL(SUM(total), 0.0) FROM use_material_info where category=#{i} and created &gt;= #{first} AND created &lt;= #{last}
+    </select>
+</mapper>

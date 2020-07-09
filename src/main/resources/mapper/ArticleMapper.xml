@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.ArticleMapper">
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        SELECT count(*) FROM article where state=1
+    </select>
+
+    <select id="getArticlesByMonth" resultType="com.jf.school.bean.table.Article">
+        select * from article WHERE created &gt;= #{first} AND created &lt;= #{last} and state=1
+    </select>
+    <select id="selectByState" resultType="com.jf.school.bean.table.Article">
+         select * from article  where state=1  order by created desc limit 5;
+    </select>
+</mapper>

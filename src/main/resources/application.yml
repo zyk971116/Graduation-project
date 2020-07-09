@@ -1,0 +1,58 @@
+server:
+  port: 1314
+  servlet:
+    context-path: /school
+spring:
+
+  datasource:
+    # 使用 druid 数据库连接池
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 驱动路径
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #
+    url: jdbc:mysql://localhost:3306/school?useSSL=false&characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+
+    # 数据源的其它信息
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat, wall, log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+# 配置mybatis
+mybatis:
+  # 配置扫描mapper.xml文件
+  mapper-locations: classpath:mapper/*.xml
+  # 配置驼峰命名转换
+  configuration:
+    map-underscore-to-camel-case: true
+  # 配置别名扫描
+  type-aliases-package: com.jf.school.bean
+
+#pagehelper分页插件配置 以下属性不加也可以实现分页功能
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+
+logging:
+  file:
+    name: school
+    path: ./log
+
+default:
+  password: 111111

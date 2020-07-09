@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.ArchiveMapper">
+    <select id="selectByState" resultType="com.jf.school.bean.table.Archive">
+         SELECT FROM_UNIXTIME(created, '%Y年%m月') AS date , COUNT(*) AS count   FROM article WHERE state = '1' GROUP BY date ORDER BY date DESC
+    </select>
+</mapper>

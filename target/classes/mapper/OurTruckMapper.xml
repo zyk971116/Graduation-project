@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.OurTruckMapper">
+
+    <select id="getTruckByApplyId" resultType="com.jf.school.bean.table.OurTruck">
+         SELECT
+            *
+        FROM
+            our_truck
+        WHERE
+            id in (
+                SELECT
+                    fk_our_truck
+                FROM
+                    apply_our_truck
+                WHERE
+                    fk_apply = #{applyId}
+            )
+    </select>
+</mapper>

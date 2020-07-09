@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.OtherMaterialMapper">
+
+    <select id="selectByCategory" resultType="com.jf.school.bean.table.OtherMaterial">
+         SELECT * from other_material where category=#{category}  GROUP BY name
+    </select>
+    <select id="selectPriceAndTotal" resultType="java.util.Map">
+        SELECT
+            price,total
+        FROM
+            other_material
+        WHERE
+            category = #{category}
+        AND NAME =  #{name}
+        AND quality =  #{quality}
+
+    </select>
+    <select id="getLastNumber" resultType="java.lang.Integer">
+        SELECT
+        material_number
+        FROM
+        other_material
+        ORDER BY
+        material_number DESC
+        LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.InHouseMapper">
+
+    <select id="selectGroup" resultType="com.jf.school.bean.vo.MoneyInfo">
+         SELECT FROM_UNIXTIME(created, '%Y年%m月') AS date  FROM in_house  GROUP BY date ORDER BY date DESC
+    </select>
+    <select id="getMoneyInfoByMonth" resultType="com.jf.school.bean.table.InHouse">
+     select * from in_house WHERE created &gt;= #{first} AND created &lt;= #{last}
+    </select>
+</mapper>

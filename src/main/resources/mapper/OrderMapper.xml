@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.OrderMapper">
+
+    <select id="getLastOrderNumber" resultType="java.lang.Integer">
+        SELECT
+        IFNULL(order_number,20200800 )
+        FROM
+        `orders`
+        ORDER BY
+        order_number DESC
+        LIMIT 1
+    </select>
+    <select id="selectTotal" resultType="java.lang.Integer">
+        SELECT count(*) FROM orders
+    </select>
+</mapper>

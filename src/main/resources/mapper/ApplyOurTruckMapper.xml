@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.ApplyOurTruckMapper">
+
+    <select id="selectByApplyId" resultType="java.lang.Integer">
+        select fk_our_truck from apply_our_truck where fk_apply=#{applyId}
+    </select>
+    <delete id="deleteByOrderId">
+        delete from orders_truck where fk_order=#{orderId}
+    </delete>
+</mapper>

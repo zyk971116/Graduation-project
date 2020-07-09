@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jf.school.mapper.OrderMoneyMapper">
+
+
+    <select id="selectByFkOrder" resultType="com.jf.school.bean.table.OrderMoney">
+        select * from order_money where fk_order=#{fkOrder};
+    </select>
+</mapper>
